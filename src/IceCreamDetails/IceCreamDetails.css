@@ -71,3 +71,33 @@
 .total-value{
     font-weight: 800;
 }
+.additional-input-container {
+  margin: 15px 0; /* Space above and below the input container */
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  }
+
+.additional-input-container label {
+  display: block; /* Make the label take full width */
+  margin-bottom: 5px; /* Space between label and input */
+  font-weight: bold; /* Make the label bold */
+  font-size: 3rem;
+}
+
+.additional-input {
+  padding: 10px; /* Padding for better touch targets */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 2rem; /* Font size for readability */
+}
+
+.additional-input:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add subtle shadow */
+}
+.formatted-date{
+  font-size: 2.5rem;
+}

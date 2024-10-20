@@ -5,6 +5,7 @@ import './App.css'
 import Header from './Header/Header'
 import IceCream from './IceCream/IceCream'
 import IceCreamDetails from './IceCreamDetails/IceCreamDetails'
+import Users from './Users/Users'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,7 +14,8 @@ function App() {
     <>
     <Header></Header>
     {/* <IceCream></IceCream> */}
-    <IceCreamDetails></IceCreamDetails>
+    {/* <IceCreamDetails></IceCreamDetails> */}
+    <Users></Users>
     </>
   )
 }
