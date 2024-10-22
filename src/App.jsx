@@ -14,8 +14,8 @@ function App() {
     <>
     <Header></Header>
     {/* <IceCream></IceCream> */}
-    {/* <IceCreamDetails></IceCreamDetails> */}
-    <Users></Users>
+    <IceCreamDetails></IceCreamDetails>
+    {/* <Users></Users> */}
     </>
   )
 }

@@ -101,3 +101,35 @@
 .formatted-date{
   font-size: 2.5rem;
 }
+/* IceCreamDetails.css */
+
+.dropdown-container {
+  margin: 20px 0; /* Add some margin for spacing */
+  display: flex;
+  justify-content: center;
+}
+
+.dropdown {
+  padding: 10px; /* Add padding for better touch targets */
+  font-size: 16px; /* Increase font size for readability */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  transition: border-color 0.3s; /* Smooth transition for border color */
+  width: 100%; /* Full width */
+  max-width: 300px; /* Limit the maximum width */
+}
+
+.dropdown:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+.dropdown option {
+  padding: 10px; /* Add padding to options */
+}
+.date-button-container{
+  display: flex;
+  flex-direction: row;
+  gap: 10px ;
+}

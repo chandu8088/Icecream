@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import iceCreamJson from '../ice-cream-json';
 import './IceCreamDetails.css';
 
@@ -7,7 +7,26 @@ function IceCreamDetails() {
   const [totalValue, setTotalValue] = useState(0);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // Set today's date as default
   const [additionalInput, setAdditionalInput] = useState('');
+  const [selectedUser, setSelectedUser] = useState('');
+  const [users, setUsers] = useState([]);
+  const [userData, setUserData] = useState([]);
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch('http://localhost:3005/users');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setUsers(data.map(user => user.name));
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+    fetchUsers();
+  }, []);
+  
   const handleCountChange = (id, increment) => {
     setIceCreamCount(
       iceCreamCount.map(item => {
@@ -40,14 +59,30 @@ function IceCreamDetails() {
     });
     return total;
   };
+  const handleUserChange = async(name)=>{
+    try{
+      const response = await fetch(`http://localhost:3005/userdata?name=${name}`)
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setUserData(data)
+      console.log(data)
+    }
+    catch(error){
+      console.log("error",error)
+    }
+    setSelectedUser(name);
+    console.log(name)
 
+  }
   const handleSubmit = async () => {
     const total = calculateTotalValue();
     setTotalValue(total);
     console.log("SELECTED DATE " + selectedDate);
     
     const data = {
-      name: 'xyz',
+      name: selectedUser,
       date: selectedDate,
       additionalInput: additionalInput,
       value: {
@@ -55,7 +90,7 @@ function IceCreamDetails() {
         iceCreamCount: iceCreamCount
       },
     };
-
+    
     try {
       const response = await fetch('http://localhost:3005/', {
         method: 'POST',
@@ -88,6 +123,26 @@ function IceCreamDetails() {
 
   return (
     <>
+      <div className="dropdown-container">
+        <select
+          value={selectedUser}
+          onChange={(e) => handleUserChange(e.target.value)}
+          className="dropdown"
+        >
+          <option value="">Select User</option>
+          {users.map(user => (
+            <option key={user} value={user}>{user}</option>
+          ))}
+        </select>
+      </div>
+      <div className='date-button-container' >
+       { userData.map(data=>(
+          
+            <button key={data._id}>{data.date}</button>
+          
+        ))}
+        </div>
+      
       <div className="date-picker-container additional-input-container">
         <label htmlFor="datePicker">Select Date: </label>
         <input
